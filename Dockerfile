@@ -1,10 +1,10 @@
 FROM kalilinux/kali-rolling
 
 ARG USER=root
-ARG VNC_PASSWORD=toortoor
-
 ENV USER ${USER}
-ENV VNC_PASSWORD ${VNC_PASSWORD}
+
+# Install apt utils
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 # Install more Kali tools
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install -y metasploit-framework
@@ -18,8 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install xfce4 xfce4-goodies -y \
     && apt-get install tightvncserver -y
 
 RUN mkdir -p /root/.vnc
-RUN USER=$USER echo -e "$VNC_PASSWORD\n" | USER=$USER vncpasswd -f > /root/.vnc/passwd \
-    && echo -e "#!/bin/bash\nxrdb /root/.Xresources\nstartxfce4 &" > /root/.vnc/xstartup \
+RUN USER= echo -e "#!/bin/bash\nxrdb /root/.Xresources\nstartxfce4 &" > /root/.vnc/xstartup \
     && chmod +x /root/.vnc/xstartup
 
 

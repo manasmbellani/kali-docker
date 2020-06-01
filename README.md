@@ -9,9 +9,14 @@ If you have docker and git installed and want to use this right away you can do 
 git clone https://github.com/lodestone-security/kali-docker
 cd kali-docker
 docker build -t lodestone-security/kali-docker .
+docker run -ti -p 127.0.0.1:5901:5901 lodestone-security/kali-docker
 ```
+At this point you can either use the command line or run `vncserver` and go
+through the configuration to start a vncserver that you can connect to on
+`127.0.0.1:5901`.
 
-Otherwise check below for docker installation details or other specific details.
+If you don't have docker installed, or want more specific instructions, check
+the section below.
 
 ## Build
 Clone this repository and then in the directory containing the `Dockerfile` run:
@@ -27,7 +32,7 @@ To run the image use the following:
 **With VNC**
 `docker run -ti -p 127.0.0.1:5901:5901 lodestone-security/kali-docker`
 
-*Note: The default VNC password is 'toortoor'. You should never expose this docker to the internet and should only use VNC over an  SSH tunnel.*
+*Note: You will need to run vncserver and set a password to use the vncserver. You should never expose this docker to the internet and should only use VNC on the localhost or over an SSH tunnel.*
 
 ## Installing Docker on Debian 10
 *Its probably better to find official documentation on this as this may not be up to date. This is mostly here for my convenience.*
