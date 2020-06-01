@@ -2,6 +2,16 @@
 
 A Dockerfile used to build a docker image containing an ephemeral instance of Kali Linux.
 
+
+## Use right away
+If you have docker and git installed and want to use this right away you can do the following:
+```
+git clone https://github.com/lodestone-security/kali-docker
+cd kali-docker
+```
+
+Otherwise check below for docker installation details or other specific details.
+
 ## Build
 Clone this repository and then in the directory containing the `Dockerfile` run:
 
@@ -38,6 +48,6 @@ sudo add-apt-repository \
   $(lsb_release -cs) \
   stable"
 
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get update -y
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 ```
