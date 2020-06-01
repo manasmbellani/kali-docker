@@ -3,11 +3,12 @@
 A Dockerfile used to build a docker image containing an ephemeral instance of Kali Linux.
 
 
-## Use right away
+## Use lodestone-security/kali-docker right away
 If you have docker and git installed and want to use this right away you can do the following:
 ```
 git clone https://github.com/lodestone-security/kali-docker
 cd kali-docker
+docker build -t lodestone-security/kali-docker .
 ```
 
 Otherwise check below for docker installation details or other specific details.
