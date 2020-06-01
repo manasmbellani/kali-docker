@@ -7,14 +7,37 @@ Clone this repository and then in the directory containing the `Dockerfile` run:
 
 `docker build -t lodestone-security/kali-docker .`
 
+## Run
 To run the image use the following:
 
-*Command line kali only, without VNC*
-
+**Command line kali only, without VNC**
 `docker run -ti lodestone-security/kali-docker`
 
-*With VNC*
-
+**With VNC**
 `docker run -ti -p 127.0.0.1:5901:5901 lodestone-security/kali-docker`
 
-**Note: The default VNC password is 'toortoor'. You should never expose this docker to the internet and should only use VNC over an  SSH tunnel.**.
+*Note: The default VNC password is 'toortoor'. You should never expose this docker to the internet and should only use VNC over an  SSH tunnel.*
+
+## Installing Docker on Debian 10
+*Its probably better to find official documentation on this as this may not be up to date. This is mostly here for my convenience.*
+
+```
+sudo apt-get install -y \
+   apt-transport-https \
+   ca-certificates \
+   curl \
+   gnupg-agent \
+   software-properties-common
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+  "deb [arch=amd64] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) \
+  stable"
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
