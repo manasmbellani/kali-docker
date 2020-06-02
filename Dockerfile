@@ -21,5 +21,14 @@ RUN mkdir -p /root/.vnc
 RUN USER= echo -e "#!/bin/bash\nxrdb /root/.Xresources\nstartxfce4 &" > /root/.vnc/xstartup \
     && chmod +x /root/.vnc/xstartup
 
+# Install other tools
+RUN apt install -y nano
+RUN apt install -y vim
+RUN apt install -y locate
+RUN apt install -y iputils-ping
+RUN apt install -y axel
+
+# Update the locatedb
+RUN updatedb
 
 ENTRYPOINT bash
