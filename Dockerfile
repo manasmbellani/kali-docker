@@ -1,3 +1,10 @@
+# Usage Instructions
+# ------------------
+# Install:
+#     docker build -t kali-docker:latest .
+# Run:
+#     docker run -it --rm -p 15900-15910:5900-5910 kali-docker:latest
+# 
 FROM kalilinux/kali-rolling
 
 ARG USER=root
@@ -5,10 +12,6 @@ ENV USER ${USER}
 
 # Install apt utils
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
-
-# Install more Kali tools
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install -y metasploit-framework
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y dirb
 
 # Install basic linux tools
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y iproute2
@@ -27,6 +30,12 @@ RUN apt install -y vim
 RUN apt install -y locate
 RUN apt install -y iputils-ping
 RUN apt install -y axel
+
+# Install net tools requirement
+RUN apt install -y net-tools
+
+# Install dbus-x11
+RUN apt install -y dbus-x11
 
 # Update the locatedb
 RUN updatedb
