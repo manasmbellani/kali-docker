@@ -20,6 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y iproute2
 RUN DEBIAN_FRONTEND=noninteractive apt-get install xfce4 xfce4-goodies -y \
     && apt-get install tightvncserver -y
 
+# Configure VNC
 RUN mkdir -p /root/.vnc
 RUN USER= echo -e "#!/bin/bash\nxrdb /root/.Xresources\nstartxfce4 &" > /root/.vnc/xstartup \
     && chmod +x /root/.vnc/xstartup
@@ -40,4 +41,13 @@ RUN apt install -y dbus-x11
 # Update the locatedb
 RUN updatedb
 
+# Add a bash script to run VNC automatically
+RUN echo "vncpasswd" > /root/startvnc.sh && \
+    echo "vncserver &" >> /root/startvnc.sh && \
+    chmod +x /root/startvnc.sh
+
+# Switch to root working directory
+WORKDIR /root
+
+# Start shell
 ENTRYPOINT bash
