@@ -9,7 +9,7 @@ If you have docker and git installed and want to use this right away you can do 
 git clone https://github.com/manasmbellani/kali-docker
 cd kali-docker
 docker build -t kali-docker .
-docker run --rm -ti -p 15900-15910:5900-5910 kali-docker:latest
+docker run --rm -ti -p 127.0.0.1:15900-15910:5900-5910 kali-docker:latest
 ```
 At this point you can either use the command line or run `vncserver` and go
 through the configuration to start a vncserver that you can connect to on
@@ -23,7 +23,7 @@ Clone this repository and then in the directory containing the `Dockerfile` run:
 ## Run
 To run the image with VNC, use the following:
 
-`docker run --rm -ti -p 15900-15910:5900-5910 kali-docker:latest`
+`docker run --rm -ti -p 127.0.0.1:15900-15910:5900-5910 kali-docker:latest`
 
 Then run `./startvnc.sh` while entering the password for vnc server
 
@@ -37,5 +37,5 @@ Inside container, run the command:
 
 ### Via mac
 ```
-open vnc://127.0.0.1:5901
+open vnc://127.0.0.1:15901
 ```
